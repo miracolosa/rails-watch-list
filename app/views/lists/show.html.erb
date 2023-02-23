@@ -1,3 +1,25 @@
+<%# banner %>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1440404653325-ab127d49abc1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80);">
+  <div class="container text-center">
+    <h1> <%= @list.name %></h1>
+  </div>
+</div>
+
+ <%# cards %>
 <div class="container">
-  <h1> <%= @list.name %></h1>
+  <div class="cards">
+    <% @bookmarks.each do |bookmark| %>
+    <div class="card-bookmark">
+      <h3><%= bookmark.movie.title %></h3>
+        <p><%= bookmark.comment %></p>
+        <%= link_to "Delete", bookmark_path(bookmark),
+          data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "btn btn-outline-secondary" %>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="container">
+  <%= link_to "Add a bookmark", new_list_bookmark_path(@list) %>
+  <%= link_to "Return to lists", lists_path  %>
 </div>
