@@ -10,6 +10,7 @@
   <div class="cards">
     <% @bookmarks.each do |bookmark| %>
     <div class="card-bookmark">
+      <%= image_tag bookmark.movie.poster_url, alt: "Poster of the movie", width: 200 %>
       <h3><%= bookmark.movie.title %></h3>
         <p><%= bookmark.comment %></p>
         <%= link_to "Delete", bookmark_path(bookmark),
