@@ -1,4 +1,7 @@
-<div class="container">
-  <h1>Create a new bookmark</h1>
+<div class="container mt-3">
+  <h1 class="text-light py-3">Create a new bookmark</h1>
+  <div class="button d-flex justify-content-end">
+    <%= link_to "Back to #{@list.name}", list_path(@list), class: "btn btn-secondary me-2 mt-4"  %>
+  </div>
   <%= render 'form', {list: @list, bookmark: @bookmark} %>
 </div>

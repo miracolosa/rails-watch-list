@@ -1,8 +1,12 @@
 <%# banner %>
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1440404653325-ab127d49abc1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80);">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url( <%= cl_image_path(@list.photo.key) %>);">
   <div class="container text-center">
     <h1> <%= @list.name %></h1>
   </div>
+</div>
+
+<div class="d-flex justify-content-end mt-3 me-3">
+  <%= link_to "Add a bookmark", new_list_bookmark_path(@list), class: "btn btn-secondary me-2" %>
 </div>
 
  <%# cards %>
@@ -10,17 +14,20 @@
   <div class="cards">
     <% @bookmarks.each do |bookmark| %>
     <div class="card-bookmark">
-      <%= image_tag bookmark.movie.poster_url, alt: "Poster of the movie", width: 200 %>
-      <h3><%= bookmark.movie.title %></h3>
-        <p><%= bookmark.comment %></p>
+      <%= image_tag bookmark.movie.poster_url, alt: "Poster of the movie" %>
+      <h3 class="mt-4"><%= bookmark.movie.title %> - <%= bookmark.movie.rating %> <i class="fa-regular fa-star"></i></h3>
+      <p class="text-center px-1"><%= bookmark.comment %></p>
+      <div class="card-bookmark-buttons d-flex justify-content-evenly mt-2">
         <%= link_to "Delete", bookmark_path(bookmark),
-          data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "btn btn-outline-secondary" %>
+          data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "btn btn-outline-secondary mb-4" %>
+        <%= link_to "Edit", edit_bookmark_path(bookmark), class: "btn btn-outline-secondary mb-4" %>
+      </div>
     </div>
     <% end %>
   </div>
-</div>
-
-<div class="container">
-  <%= link_to "Add a bookmark", new_list_bookmark_path(@list) %>
-  <%= link_to "Return to lists", lists_path  %>
+  <div class="button-end d-flex justify-content-center mb-4">
+    <%= link_to "Return to lists", lists_path, class: "btn btn-secondary me-2"  %>
+    <%= link_to "Delete the list", list_path(@list),
+      data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "btn btn-secondary"  %>
+  </div>
 </div>

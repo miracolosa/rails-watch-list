@@ -1,5 +1,5 @@
 <%= simple_form_for [list, bookmark] do |f| %>
-  <%= f.input :comment %>
+  <%= f.input :comment, label_html: { class: 'text-light' } %>
   <%= f.association :movie, as: :radio_buttons %>
-  <%= f.submit %>
+  <%= f.submit class:"btn btn-outline-light" %>
 <% end %>

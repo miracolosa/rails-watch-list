@@ -9,7 +9,7 @@
   <%# cards %>
   <div class="cards">
     <% @lists.each do |list| %>
-    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= list.photo.attached? ? cl_image_path(list.photo.key, height: 300, crop: :fill) : asset_path('https://images.unsplash.com/photo-1677100091551-748c921e6609?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80') %>)">
           <%= link_to list.name, list_path(list), class: "text-decoration-none text-reset" %>
     </div>
     <% end %>

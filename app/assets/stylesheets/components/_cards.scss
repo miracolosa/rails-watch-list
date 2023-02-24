@@ -21,8 +21,7 @@
 }
 
 .card-bookmark {
-  background-color: #222222;
-  height: 200px;
+  background-color: #2e2d2d;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -37,6 +36,18 @@
     border-radius: 15px;
     padding: 15px 20px;
   }
+
+  img {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 5px;
+  }
+}
+
+.card-bookmark-buttons {
+  width: 100%;
 }
 
 // Smallest device
